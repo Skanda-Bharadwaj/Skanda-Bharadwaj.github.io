@@ -114,6 +114,57 @@
     }
     .pill:hover{background:#f7f7f7; text-decoration:none}
 
+    .affiliations{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+    .affiliations-title{
+      margin:0 0 12px 0;
+      color:var(--muted);
+      font-size:0.78rem;
+      font-weight:650;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+    .affiliation-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:10px;
+      align-items:stretch;
+    }
+    .affiliation{
+      min-height:74px;
+      padding:10px 8px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      color:var(--muted);
+      font-size:0.82rem;
+      background:#fff;
+    }
+    .affiliation img{
+      max-width:100%;
+      width:72px;
+      height:30px;
+      object-fit:contain;
+      filter:grayscale(100%);
+      opacity:0.72;
+      transition:filter 160ms ease, opacity 160ms ease;
+    }
+    .affiliation:hover img{
+      filter:grayscale(0%);
+      opacity:0.95;
+    }
+    .affiliation span{
+      line-height:1.2;
+      text-align:center;
+    }
+
     .photo{
       width:100%;
       max-width:320px;
@@ -178,6 +229,9 @@
       .hero-photo{
         order: -1;   /* move photo ABOVE text */
       }
+      .affiliation-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
     }
 
     
@@ -234,6 +288,28 @@
         <p class="small" style="margin-top:12px;">
           Email: <a href="mailto:skanda.bharadwaj@psu.edu">skanda.bharadwaj@psu.edu</a>
         </p>
+
+        <div class="affiliations" aria-labelledby="affiliations-title">
+          <p class="affiliations-title" id="affiliations-title">Affiliations &amp; Experience</p>
+          <div class="affiliation-grid">
+            <div class="affiliation">
+              <img src="penn_logo.webp" alt="Penn State logo" loading="lazy" />
+              <span>Penn State</span>
+            </div>
+            <div class="affiliation">
+              <img src="meta_logo.png" alt="Meta logo" loading="lazy" />
+              <span>Meta</span>
+            </div>
+            <div class="affiliation">
+              <img src="slb_logo.png" alt="SLB logo" loading="lazy" />
+              <span>SLB</span>
+            </div>
+            <div class="affiliation">
+              <img src="conti_logo.png" alt="Continental logo" loading="lazy" />
+              <span>Continental</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="hero-photo">
