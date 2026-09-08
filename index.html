@@ -113,56 +113,107 @@
       background:#fff;
     }
     .pill:hover{background:#f7f7f7; text-decoration:none}
+    .company{
+      color:var(--link);
+      font-weight:500;
+    }
 
     .affiliations{
-      margin-top:18px;
-      padding-top:14px;
+      margin-top:22px;
+      padding-top:18px;
       border-top:1px solid var(--line);
     }
     .affiliations-title{
       margin:0 0 12px 0;
-      color:var(--muted);
-      font-size:0.78rem;
+      color:var(--text);
+      font-size:1.25rem;
       font-weight:650;
-      letter-spacing:0.08em;
-      text-transform:uppercase;
+      letter-spacing:0;
     }
     .affiliation-grid{
       display:grid;
       grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:10px;
-      align-items:stretch;
+      gap:12px;
+      align-items:start;
     }
     .affiliation{
-      min-height:74px;
-      padding:10px 8px;
-      border:1px solid var(--line);
-      border-radius:8px;
+      position:relative;
       display:flex;
       flex-direction:column;
       align-items:center;
-      justify-content:center;
-      gap:8px;
+      gap:7px;
       color:var(--muted);
       font-size:0.82rem;
+      cursor:default;
+    }
+    .affiliation:focus{
+      outline:2px solid rgba(11,87,208,0.24);
+      outline-offset:3px;
+    }
+    .affiliation-logo{
+      width:100%;
+      min-height:72px;
+      padding:12px 10px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       background:#fff;
     }
     .affiliation img{
       max-width:100%;
-      width:72px;
-      height:30px;
+      width:86px;
+      height:36px;
       object-fit:contain;
-      filter:grayscale(100%);
-      opacity:0.72;
-      transition:filter 160ms ease, opacity 160ms ease;
-    }
-    .affiliation:hover img{
-      filter:grayscale(0%);
       opacity:0.95;
     }
-    .affiliation span{
+    .affiliation-label{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
       line-height:1.2;
       text-align:center;
+    }
+    .affiliation-role{
+      color:var(--muted);
+      font-size:0.72rem;
+    }
+    .affiliation-note{
+      position:absolute;
+      left:50%;
+      bottom:calc(100% + 10px);
+      z-index:20;
+      width:max-content;
+      max-width:230px;
+      padding:9px 10px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#111;
+      color:#fff;
+      box-shadow:0 8px 22px rgba(0,0,0,0.16);
+      font-size:0.78rem;
+      line-height:1.35;
+      text-align:left;
+      opacity:0;
+      pointer-events:none;
+      transform:translate(-50%, 4px);
+      transition:opacity 140ms ease, transform 140ms ease;
+    }
+    .affiliation-note::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:-6px;
+      width:10px;
+      height:10px;
+      background:#111;
+      transform:translateX(-50%) rotate(45deg);
+    }
+    .affiliation:hover .affiliation-note,
+    .affiliation:focus .affiliation-note{
+      opacity:1;
+      transform:translate(-50%, 0);
     }
 
     .photo{
@@ -245,7 +296,6 @@
       <nav aria-label="Site">
         <a href="#publications">Publications</a>
         <a href="#news">News</a>
-        <a href="#blog">Blog</a>
       </nav>
     </div>
   </div>
@@ -268,10 +318,10 @@
         </p>
         
         <p class="intro">
-          My industry experience includes internships at <b>Meta as a Machine Learning Engineer (Summer 2026 and Summer 2025)</b> with the Video Ecosystem Ranking team, where I 
-          worked on the Facebook Recommendation System, and as a <b>Research Scientist Intern at SLB (Summer 2024)</b>, where I 
+          My industry experience includes internships at <span class="company">Meta</span> as a Machine Learning Engineer (Summer 2026 and Summer 2025) with the Video Ecosystem Ranking team, where I 
+          worked on the Facebook Recommendation System, and at <span class="company">SLB</span> as a Research Scientist Intern (Summer 2024), where I 
           worked on real-time segmentation pipelines for environmental monitoring. Prior to graduate school, 
-          I worked for over three years at <b>Continental (2015 - 2018) as a Computer Vision Engineer</b>, developing multi-object 
+          I worked for over three years at <span class="company">Continental</span> as a Computer Vision Engineer (2015 - 2018), developing multi-object 
           tracking and traffic sign recognition algorithms for ADAS systems in collaboration with global automotive 
           OEMs.
         </p>
@@ -290,23 +340,35 @@
         </p>
 
         <div class="affiliations" aria-labelledby="affiliations-title">
-          <p class="affiliations-title" id="affiliations-title">Affiliations &amp; Experience</p>
+          <h2 class="affiliations-title" id="affiliations-title">Affiliations &amp; Experience</h2>
           <div class="affiliation-grid">
-            <div class="affiliation">
-              <img src="penn_logo.webp" alt="Penn State logo" loading="lazy" />
-              <span>Penn State</span>
+            <div class="affiliation" tabindex="0" aria-describedby="affiliation-penn">
+              <div class="affiliation-logo">
+                <img src="penn_logo.webp" alt="Penn State logo" loading="lazy" />
+              </div>
+              <span class="affiliation-label">Penn State <span class="affiliation-role">PhD Scholar</span></span>
+              <span class="affiliation-note" id="affiliation-penn" role="tooltip">PhD Candidate and MS in Computer Science.</span>
             </div>
-            <div class="affiliation">
-              <img src="meta_logo.png" alt="Meta logo" loading="lazy" />
-              <span>Meta</span>
+            <div class="affiliation" tabindex="0" aria-describedby="affiliation-meta">
+              <div class="affiliation-logo">
+                <img src="meta_logo.png" alt="Meta logo" loading="lazy" />
+              </div>
+              <span class="affiliation-label">Meta <span class="affiliation-role">MLE Intern</span></span>
+              <span class="affiliation-note" id="affiliation-meta" role="tooltip">Machine Learning Engineer Intern, Video Ecosystem Ranking. Summers 2025 and 2026.</span>
             </div>
-            <div class="affiliation">
-              <img src="slb_logo.png" alt="SLB logo" loading="lazy" />
-              <span>SLB</span>
+            <div class="affiliation" tabindex="0" aria-describedby="affiliation-slb">
+              <div class="affiliation-logo">
+                <img src="slb_logo.png" alt="SLB logo" loading="lazy" />
+              </div>
+              <span class="affiliation-label">SLB <span class="affiliation-role">Research Scientist Intern</span></span>
+              <span class="affiliation-note" id="affiliation-slb" role="tooltip">Research Scientist Intern working on real-time segmentation. Summer 2024.</span>
             </div>
-            <div class="affiliation">
-              <img src="conti_logo.png" alt="Continental logo" loading="lazy" />
-              <span>Continental</span>
+            <div class="affiliation" tabindex="0" aria-describedby="affiliation-continental">
+              <div class="affiliation-logo">
+                <img src="conti_logo.png" alt="Continental logo" loading="lazy" />
+              </div>
+              <span class="affiliation-label">Continental <span class="affiliation-role">Computer Vision Engineer</span></span>
+              <span class="affiliation-note" id="affiliation-continental" role="tooltip">Computer Vision Engineer for ADAS perception systems. 2015-2018.</span>
             </div>
           </div>
         </div>
@@ -432,13 +494,6 @@
           at the 42nd Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC).
         </li>
       </ul>
-    </section>
-
-    <section id="blog">
-      <h2>Blog</h2>
-      <p class="small">
-        Under construction.
-      </p>
     </section>
 
     <div class="footer">
